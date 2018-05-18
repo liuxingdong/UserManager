@@ -1,0 +1,35 @@
+.normalDiv {
+  background: white;
+  height: 100%;
+  width: 100%;
+}
+.displayControl{
+  display: block;
+}
+.displayControlNone{
+  display: none;
+}
+.mapboxgl_popup_content {
+  padding: 0 28px 0 8px;
+  width: 90px;
+  height: 25px;
+  background: #0896d3;
+  border-radius: 12px;
+  font-size: 10px;
+  line-height: 25px;
+  color: #fff;
+}
+.mapboxgl_popup_tip {
+  border-top: 7px solid #0896d3;
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+}
+.mapboxgl_popup_close_button{
+  font-size: 14px;
+  color: #fff;
+  line-height: 14px;
+  border-left: 1px solid #01b9fc;
+  right: 10px;
+  top: 4px;
+  padding-left: 7px;
+}

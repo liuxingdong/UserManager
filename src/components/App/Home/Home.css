@@ -1,0 +1,17 @@
+.isShow {
+  display: none;
+}
+/* For demo */
+.antCarousel {
+  text-align: center;
+  height: 400px;
+  line-height: 400px;
+  background: #237937;
+  overflow: hidden;
+  width: 60%;
+  /*opacity: 0.5;*/
+}
+
+.antCarousel .slick-slide h3 {
+  color: #fff;
+}

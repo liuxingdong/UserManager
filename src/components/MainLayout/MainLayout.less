@@ -1,0 +1,45 @@
+@import "../../themes/vars";
+.normal {
+  height: 100%;
+}
+.trigger:hover {
+  color: #1890ff;
+}
+
+.trigger {
+  font-size: 18px;
+  line-height: 64px;
+  padding: 0 24px;
+  cursor: pointer;
+  transition: color .3s;
+}
+.rightWarpper {
+  display: flex;
+  padding-right: 16px;
+}
+
+.emailButton {
+  width: 47px;
+  height: 47px;
+  line-height: 47px;
+  text-align: center;
+  font-size: 18px;
+  cursor: pointer;
+  transition: @transition-ease-in;
+
+  &:hover {
+    color: @primary-color;
+    background-color: fade(@primary-color, 15%);
+  }
+}
+
+.footer {
+ /* height: 48px;
+  line-height: 48px;*/
+  text-align: center;
+ /* font-size: 12px;
+  color: #999;
+  background: #fff;
+  box-shadow: @shadow-2;
+  width: 100%;*/
+}
