@@ -2,6 +2,7 @@ import React from 'react';
 import { Table ,Card, Icon ,Modal, Button, Input, AutoComplete } from 'antd';
 import styles from './User.less';
 import Mock  from 'mockjs';
+import AddEditUser from './AddEditUser';
 
 class User extends React.Component {
   constructor(props) {
@@ -78,10 +79,27 @@ class User extends React.Component {
       payload:title,
     })
   };
+
+  isDeleteUserInfo = () => {
+    Modal.warning({
+      title: '删除当前用户',
+      content: '您确定要删除当前用户吗?.',
+      onOk : this.deleteUser
+    });
+  };
+
+  deleteUser = () => {
+    alert("成功!");
+  };
   render() {
+    const random = Mock.Random;
     const columns = [{
       title: '序号',
       dataIndex: 'key',
+    },{
+      title: '头像',
+      dataIndex: 'avatar',
+      render : text => <Avatar size="large" shape="square"  src={text} />
     },{
       title: '用户名',
       dataIndex: 'username',
@@ -102,19 +120,20 @@ class User extends React.Component {
       render : data => <div style={{ textAlign: 'center'}}>
         <a href="javascript:;"  onClick={() => this.setUserModalOpen("查看用户")}><Icon type='profile' style={{ margin:'10px',fontSize: '19px'}}/></a>
         <a href="javascript:;"  onClick={()=> this.setUserModalOpen("编辑用户")}><Icon type='edit' style={{ margin:'10px',fontSize: '19px'}}/></a>
-        <a href="javascript:;" onClick={()=> this.setUserModalOpen("删除用户")}><Icon type='delete'  style={{ margin:'10px',fontSize: '19px'}} /></a>
+        <a href="javascript:;" onClick={()=> this.isDeleteUserInfo()}><Icon type='delete'  style={{ margin:'10px',fontSize: '19px'}} /></a>
       </div>,
     }];
 
     const data = Mock.mock({
-                                                                    // 属性 list 的值是一个数组，其中含有 1 到 10 个元素
+      // 属性 list 的值是一个数组，其中含有 1 到 10 个元素
       'list|1-700': [{
-          'key|+1':1,                                               // 属性 id 是一个自增数，起始值为 1，每次增 1
-          'username': '@cname',                                     // 中文名称
-          'loginName|1': ['jack', 'jim','tts','admin','liu','li'],  // 随机选取 1 个元素
-          'createTime':"@date('yyyy-MM-dd HH:mm:ss')",
-          'address':'@url()',
-          'operation' : ['编辑', '删除','查看']
+        'key|+1':1,                                               // 属性 id 是一个自增数，起始值为 1，每次增 1
+        'avatar':random.image('100x100'),
+        'username': '@cname',                                     // 中文名称
+        'loginName|1': ['jack', 'jim','tts','admin','liu','li'],  // 随机选取 1 个元素
+        'createTime':"@date('yyyy-MM-dd HH:mm:ss')",
+        'address':'@url()',
+        'operation' : ['编辑', '删除','查看']
       }]
 
     });
@@ -135,9 +154,7 @@ class User extends React.Component {
           onOk={() => this.setUserModalVisible(false)}
           onCancel={() => this.setUserModalVisible(false)}
         >
-          <p>some contents...</p>
-          <p>some contents...</p>
-          <p>some contents...</p>
+          <AddEditUser/>
         </Modal>
       </div>
     );
