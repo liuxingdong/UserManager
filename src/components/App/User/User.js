@@ -1,5 +1,5 @@
 import React from 'react';
-import { Table ,Card, Icon ,Modal, Button, Input, AutoComplete } from 'antd';
+import { Table ,Avatar, Icon ,Modal, Button, Input, AutoComplete } from 'antd';
 import styles from './User.less';
 import Mock  from 'mockjs';
 import AddEditUser from './AddEditUser';
