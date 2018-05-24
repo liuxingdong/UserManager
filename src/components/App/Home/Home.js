@@ -1,12 +1,10 @@
 import React from 'react';
-import { Carousel ,Card } from 'antd';
 import styles from './Home.css';
-import * as d3 from "d3";
-import img1 from '../../../assets/image/time01.jpg';
-import img2 from '../../../assets/image/time02.jpg';
-import img3 from '../../../assets/image/time03.jpg';
-import img4 from '../../../assets/image/time04.jpg';
-import img5 from '../../../assets/image/time05.jpg';
+// import * as d3 from "d3";
+import {  Card , notification ,List , Avatar , Icon} from 'antd';
+import echarts from 'echarts';
+import Mock from "mockjs";
+// import "~antd/dist/antd.less";
 
 class Home extends React.Component {
   constructor(props) {
@@ -16,25 +14,114 @@ class Home extends React.Component {
   }
 
   showChart() {
-    console.log("==============测试d3====================");
-    let styk = d3.select(".reset").attr("style");
-    console.log(styk)
-    console.log("===================测试结束================");
+    //  实例化图表容器
+    let Necharts = echarts.init(document.getElementById("userActive"));
+    // 生成随机数据
+    const data = Mock.mock({
+      'list|1-10': [{
+        'value|1-10000': 1000,
+        'name': '@cname',
+      }]
+
+    });
+    //  设置图表属性
+    Necharts.setOption({
+     series : [
+       {
+         name : "南丁格尔图",
+         type : 'pie',
+         radius :"50%",
+         roseType : 'angle',
+         data : data.list
+       }
+     ],
+      // backgroundColor: '#2c343c',
+      label : {
+        textStyle: {
+          color :'rgb(255,255,255,0.3)'
+        }
+      },
+     /* labelLine : {
+        lineStyle: {
+          color : "rgb(255,255,255,0.3)"
+        }
+      }*/
+
+    })
+
 
   }
-  render() {
+  componentDidMount() {
+    this.showChart();
+  }
 
+  tabMessageShow = () => {
+      notification['warning']({
+        message : '当前功能未开通!',
+        description : '当前的功能并未开通，请等待更新!'
+      });
+
+  };
+
+
+  render() {
+    // const Step = Steps.Step;
+    const IconText = ({ type, text }) => (
+        <span>
+          <Icon type={type} style={{ marginRight: 8 }} />
+              {text}
+          </span>
+    );
+    console.clear();
+    const data = Mock.mock({
+      'list|1-10': [{
+        'href':"@url",
+        'title':"@ctitle",
+        'avatar': 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
+        'description': "@cparagraph(1,3)",
+        'content':"@csentence(1,10)",
+      }]
+
+    });
     return (
       <div className={this.props.globalProp.homeSwitch ? '' : styles.isShow} style={{height:'100%',width:'100%'}}>
-        {/*<Card  hoverable>*/}
-            {/*<Carousel className={styles.antCarousel} autoplay>
-              <div style={{ height : '100%',width: '100%'}}><img style={{ height : '100%',width: '100%'}} src={img1} alt=""/></div>
-              <div style={{ height : '100%',width: '100%'}}><img style={{ height : '100%',width: '100%'}} src={img2} alt=""/></div>
-              <div style={{ height : '100%',width: '100%'}}><img style={{ height : '100%',width: '100%'}} src={img3} alt=""/></div>
-              <div style={{ height : '100%',width: '100%'}}><img style={{ height : '100%',width: '100%'}} src={img4} alt=""/></div>
-              <div style={{ height : '100%',width: '100%'}}><img style={{ height : '100%',width: '100%'}} src={img5} alt=""/></div>
-          </Carousel>*/}
-        {/*</Card>*/}
+        <Card  title="最新消息..." extra={<a onClick={()=>this.tabMessageShow()}>了解更多</a>} style={{ width: "24%" ,display:'inline-block' }}>
+        {/*  <Steps direction="vertical" size="small" current={1}>
+            <Step title="Finished" description="This is a description." />
+            <Step title="In Progress" description="This is a description." />
+            <Step title="Waiting" description="This is a description." />
+          </Steps>*/}
+        </Card>
+        <Card title="用户活动量" extra={<a onClick={()=>this.tabMessageShow()}>了解更多</a>} style={{width : "74%",float: "right",display:"inline-block",verticalAlign:"top"}}>
+          <div id="userActive" style={{height: 400, width: 400}}/>
+          <div id="locationActive" style={{height: 400, width: 400}}/>
+        </Card>
+        <Card title="实时动态消息..." extra={<a onClick={()=>this.tabMessageShow()}>了解更多</a>} style={{width: "24%", display: 'inline-block', top: 30}}>
+          <List itemLayout="vertical" size="small" pagination={{
+            onChange : (page) => {
+              console.log(page);
+            },
+            pageSize : 3
+          }} dataSource={data.list} footer={<div>页脚</div>}
+                renderItem={item => (
+                  <List.Item
+                    key={item.title}
+                    actions={[<IconText type="star-o" text="45" />, <IconText type="like-o" text="156" />, <IconText type="message" text="2" />]}
+                    extra={<img width={100}  alt="logo" src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
+                    className={styles.listItem}
+                  >
+                    <List.Item.Meta
+                      avatar={<Avatar src={item.avatar} />}
+                      title={<a href={item.href}>{item.title}</a>}
+                      description={item.description}
+                    />
+                    {item.content}
+                  </List.Item>
+                )}
+          >
+
+          </List>
+        </Card>
       </div>
     );
   }

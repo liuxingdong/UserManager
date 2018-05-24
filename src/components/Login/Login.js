@@ -3,7 +3,7 @@ import style from './Login.css';
 import { Form, Spin, Checkbox, Icon, Input, Button } from 'antd';
 import DocumentTitle from 'react-document-title';
 import PropTypes from 'prop-types';
-import logoImg from '../../assets/yay.jpg';
+import logoImg from '../../assets/Home1.png';
 
 class Login extends React.Component {
   constructor(props) {
@@ -11,13 +11,10 @@ class Login extends React.Component {
     this.state = {
       loading: false,
     };
-    // this.login = this.login.bind(this);
     this.showErrorTip = this.showErrorTip.bind(this);
     this.onKeyPressLogin = this.onKeyPressLogin.bind(this);
   }
   handleSubmit = (e) => {
-    // this.props.handleLogin(true);
-    // this.props.handleLogin(err, values);
     this.props.form.validateFields((err, values) => {
       this.props.handleLogin(err, values);
     });
@@ -34,20 +31,6 @@ class Login extends React.Component {
   showErrorTip = () => {
     message.error(this.props.errorTip);
   };
-  handleChange = (name, event) => {
-    console.log(name);
-
-    console.dir(event.target.value);
-  }
- /* loginViewShow = () => {
-    this.props.loginInfomationShow(true, false, false);
-  }
-  updatePasswordViewShow = () => {
-    this.props.loginInfomationShow(false, true, false);
-  }
-  registerViewShow = () => {
-    this.props.loginInfomationShow(false, false, true);
-  }*/
   render() {
     const FormItem = Form.Item;
     const { getFieldDecorator } = this.props.form;

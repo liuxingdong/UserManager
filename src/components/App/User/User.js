@@ -145,7 +145,7 @@ class User extends React.Component {
           columns={columns}
           dataSource={data.list}
           bordered
-          title={() =>'策划回复'}
+          title={() =>'测试区域'}
         />
         <Modal
           title={this.props.model.userTitle}

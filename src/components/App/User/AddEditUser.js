@@ -40,12 +40,6 @@ class AddEditUser extends React.Component{
     };
 
     return(<Form onSubmit={this.handleAddEditUserSubmit}>
-      {/* <FormItem
-        {...formItemLayout}
-        label="Plain Text"
-      >
-        <span className="ant-form-text">China</span>
-      </FormItem>*/}
       <FormItem
         {...formItemLayout}
         label="邮箱地址"
