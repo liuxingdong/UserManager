@@ -3,8 +3,8 @@ import config from '../utils/config';
 
 export async function login({ username, password }) {
   const param = {
-    username : username,
-    password : password,
+    username,
+    password,
   };
   return request(`${config.cxt}/system/app/user/login`, {
     method: 'post',
@@ -15,18 +15,6 @@ export async function login({ username, password }) {
 
 //
 export async function getMapboxMarkerData({ url }) {
-  return request(url, {
-    method: 'get',
-    mode: 'cors',
-    credentials: 'include',
-    headers: {
-      'Content-Type': 'application/x-www-form-urlencoded',
-      'Access-Control-Allow-Origin': '*',
-    },
-  });
-}
-
-export async function getChartViewData({ url }) {
   return request(url, {
     method: 'get',
     mode: 'cors',

@@ -1,7 +1,7 @@
 import React from 'react';
-import { Form, Input, Tooltip,  DatePicker, Icon, Select } from 'antd';
+import { Form, Input, Tooltip, DatePicker, Icon, Select } from 'antd';
 
-class AddEditUser extends React.Component{
+class AddEditUser extends React.Component {
   handleAddEditUserSubmit = (e) => {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
@@ -11,7 +11,7 @@ class AddEditUser extends React.Component{
     });
   };
 
-  render(){
+  render() {
     const FormItem = Form.Item;
     const { getFieldDecorator } = this.props.form;
     const formItemLayout = {
@@ -33,13 +33,13 @@ class AddEditUser extends React.Component{
       <Select style={{ width: 70 }}>
         <Option value="86">+86</Option>
         <Option value="87">+87</Option>
-      </Select>
+      </Select>,
     );
     const config = {
       rules: [{ type: 'object', required: true, message: '请选择时间!' }],
     };
 
-    return(<Form onSubmit={this.handleAddEditUserSubmit}>
+    return (<Form onSubmit={this.handleAddEditUserSubmit}>
       <FormItem
         {...formItemLayout}
         label="邮箱地址"
@@ -51,25 +51,25 @@ class AddEditUser extends React.Component{
             required: true, message: '请输入邮件地址!',
           }],
         })(
-          <Input />
+          <Input />,
         )}
       </FormItem>
-      {/*昵称*/}
+      {/* 昵称*/}
       <FormItem
         {...formItemLayout}
         label={(
           <span>
              昵称&nbsp;
             <Tooltip title="What do you want others to call you?">
-                <Icon type="question-circle-o" />
-              </Tooltip>
-            </span>
+              <Icon type="question-circle-o" />
+            </Tooltip>
+          </span>
         )}
       >
         {getFieldDecorator('nickname', {
           rules: [{ required: true, message: '请输入您的昵称!', whitespace: true }],
         })(
-          <Input />
+          <Input />,
         )}
       </FormItem>
       <FormItem
@@ -79,7 +79,7 @@ class AddEditUser extends React.Component{
         {getFieldDecorator('phone', {
           rules: [{ required: true, message: 'Please input your phone number!' }],
         })(
-          <Input addonBefore={prefixSelector} style={{ width: '100%' }} />
+          <Input addonBefore={prefixSelector} style={{ width: '100%' }} />,
         )}
       </FormItem>
       <FormItem
@@ -87,7 +87,7 @@ class AddEditUser extends React.Component{
         label="创建时间"
       >
         {getFieldDecorator('date-time-picker', config)(
-          <DatePicker showTime format="YYYY-MM-DD HH:mm:ss" />
+          <DatePicker showTime format="YYYY-MM-DD HH:mm:ss" />,
         )}
       </FormItem>
     </Form>);

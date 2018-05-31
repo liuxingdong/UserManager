@@ -7,3 +7,6 @@ html, body, :global(#root) {
 }
 
 
+.ant-list-item-extra {
+  margin-left: 8px !important;
+}
