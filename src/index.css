@@ -5,8 +5,3 @@ html, body, :global(#root) {
   padding: 0px;
   overflow:hidden;
 }
-
-
-.ant-list-item-extra {
-  margin-left: 8px !important;
-}

@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './Home.less';
-import $ from 'jquery';
+import * as d3 from 'd3';
 import { Card, notification, List, Avatar, Icon } from 'antd';
 import echarts from 'echarts';
 import Mock from 'mockjs';
@@ -15,7 +15,7 @@ class Home extends React.Component {
 
   showChart() {
     //  实例化图表容器
-    const Necharts = echarts.init($('#userActive')[0]);
+    const Necharts = echarts.init(document.getElementById('userActive'));
     // 生成随机数据
     const data = Mock.mock({
       'list|1-10': [{
@@ -50,16 +50,6 @@ class Home extends React.Component {
     });
   }
   componentDidMount() {
-    /**
-     *
-     * */
-    // $('.headPortrait').parent('div').css('margin-left:', '7px');
-
-    if ($('.headPortrait').length > 0) {
-      console.clear();
-      console.log('================进入到方法中!===================');
-      $('.headPortrait').parent('.ant-list-item-extra').css('background-color', 'crimson');
-    }
     this.showChart();
   }
 
@@ -73,13 +63,13 @@ class Home extends React.Component {
 
   render() {
     // const Step = Steps.Step;
+
     const IconText = ({ type, text }) => (
       <span>
         <Icon type={type} style={{ marginRight: 8 }} />
         {text}
       </span>
     );
-    console.clear();
     const data = Mock.mock({
       'list|1-10': [{
         href: '@url',
@@ -117,7 +107,6 @@ class Home extends React.Component {
                 actions={[<IconText type="star-o" text="45" />, <IconText type="like-o" text="156" />, <IconText type="message" text="2" />]}
                 extra={<img className="headPortrait" width={100} alt="logo" src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
                 className={styles.listItem}
-                id="listItem"
               >
                 <List.Item.Meta
                   avatar={<Avatar src={item.avatar} />}
