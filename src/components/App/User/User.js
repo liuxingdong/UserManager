@@ -1,5 +1,5 @@
 import React from 'react';
-import { Table, Avatar, Icon, Modal } from 'antd';
+import { Table, Avatar, Icon, Modal, AutoComplete, Button, Input } from 'antd';
 import styles from './User.less';
 import Mock from 'mockjs';
 import AddEditUser from './AddEditUser';
@@ -7,63 +7,33 @@ import AddEditUser from './AddEditUser';
 class User extends React.Component {
   constructor(props) {
     super(props);
-    this.rowSelection = null;
-    this.selectData();
+    this.inputSelectConsole = this.inputSelectConsole.bind(this);
   }
 
   onSelectChange = (selectedRowKeys) => {
-    console.log('selectedRowKeys');
     this.props.dispatch({
       type: 'user/setSelectedRowKeys',
       payload: selectedRowKeys,
     });
   };
 
-  selectData() {
-    const selectedRowKeys = this.props.model.selectedRowKeys;
-    this.rowSelection = {
-      selectedRowKeys,
-      onChange: this.onSelectChange,
-      hideDefaultSelections: true,
-      selections: [{
-        key: 'all-data',
-        text: '选择全部',
-        onSelect: (changableRowKeys) => {
-          console.clear();
-          console.log(changableRowKeys);
-          this.onSelectChange(changableRowKeys);
-        },
-      }, {
-        key: 'odd',
-        text: '选着一部分',
-        onSelect: (changableRowKeys) => {
-          let newSelectedRowKeys = [];
-          newSelectedRowKeys = changableRowKeys.filter((key, index) => {
-            if (index % 2 !== 0) {
-              return false;
-            }
-            return true;
-          });
-          this.setState({ selectedRowKeys: newSelectedRowKeys });
-        },
-      }, {
-        key: 'even',
-        text: 'Select Even Row',
-        onSelect: (changableRowKeys) => {
-          let newSelectedRowKeys = [];
-          newSelectedRowKeys = changableRowKeys.filter((key, index) => {
-            if (index % 2 !== 0) {
-              return true;
-            }
-            return false;
-          });
-          this.setState({ selectedRowKeys: newSelectedRowKeys });
-        },
-      }],
-      onSelection: this.onSelection,
-    };
-  }
+  getRandomInt = (max, min = 0) => {
+    return Math.floor(Math.random() * (max - min + 1));
+  };
 
+  searchResult =() => {
+    // return ();
+  };
+  renderOption = (item) => {
+    const Option = AutoComplete.Option;
+    return (<Option key={item.key} text={item.username}>
+      {item.username}
+      <a href={item.address} target="_blank" ref=" noopener noreferrer" >
+        {item.loginName}
+      </a>
+      <span className={styles.globalSearchItemCount}>约</span>
+    </Option>);
+  };
   setUserModalVisible = (visible) => {
     this.props.dispatch({
       type: 'user/setUserModalVisible',
@@ -89,8 +59,36 @@ class User extends React.Component {
   deleteUser = () => {
     alert('成功!');
   };
-  render() {
+  inputSelectConsole = (value) => {
+    console.clear();
+    console.log(value);
+  }
+  /**
+   * 首次将会在rende之前执行
+   */
+  componentWillMount() {
     const random = Mock.Random;
+    const data = Mock.mock({
+      // 属性 list 的值是一个数组，其中含有 1 到 10 个元素
+      'list|1-700': [{
+        'key|+1': 1,                                               // 属性 id 是一个自增数，起始值为 1，每次增 1
+        avatar: random.image('100x100'),
+        username: '@cname',                                     // 中文名称
+        'loginName|1': ['jack', 'jim', 'tts', 'admin', 'liu', 'li'],  // 随机选取 1 个元素
+        createTime: "@date('yyyy-MM-dd HH:mm:ss')",
+        address: '@url()',
+        operation: ['编辑', '删除', '查看'],
+      }],
+    });
+
+    this.props.dispatch({
+      type: 'user/setUserData',
+      payload: data,
+    });
+  }
+
+
+  render() {
     const columns = [{
       title: '序号',
       dataIndex: 'key',
@@ -122,28 +120,73 @@ class User extends React.Component {
       </div>,
     }];
 
-    const data = Mock.mock({
-      // 属性 list 的值是一个数组，其中含有 1 到 10 个元素
-      'list|1-700': [{
-        'key|+1': 1,                                               // 属性 id 是一个自增数，起始值为 1，每次增 1
-        avatar: random.image('100x100'),
-        username: '@cname',                                     // 中文名称
-        'loginName|1': ['jack', 'jim', 'tts', 'admin', 'liu', 'li'],  // 随机选取 1 个元素
-        createTime: "@date('yyyy-MM-dd HH:mm:ss')",
-        address: '@url()',
-        operation: ['编辑', '删除', '查看'],
-      }],
 
-    });
+    const rowSelection = {
+      selectedRowKeys: this.props.model.selectedRowKeys,
+      onChange: this.onSelectChange,
+      hideDefaultSelections: true,
+      selections: [{
+        key: 'all-data',
+        text: '选择全部',
+        onSelect: (changableRowKeys) => {
+          console.clear();
+          console.log(changableRowKeys);
+          this.onSelectChange([...Array(46).keys()]);
+        },
+      }, {
+        key: 'odd',
+        text: '选着偶数部分',
+        onSelect: (changableRowKeys) => {
+          let newSelectedRowKeys = [];
+          newSelectedRowKeys = changableRowKeys.filter((key, index) => {
+            if (index % 2 !== 0) {
+              return false;
+            }
+            return true;
+          });
+          this.onSelectChange(newSelectedRowKeys);
+        },
+      }, {
+        key: 'even',
+        text: '选择奇数部分',
+        onSelect: (changableRowKeys) => {
+          let newSelectedRowKeys = [];
+          newSelectedRowKeys = changableRowKeys.filter((key, index) => {
+            if (index % 2 !== 0) {
+              return true;
+            }
+            return false;
+          });
+
+          this.onSelectChange(newSelectedRowKeys);
+        },
+      }],
+      onSelection: this.onSelection,
+    };
+
 
     return (
       <div className={this.props.globalProp.userSwitch ? '' : styles.userShowSwitch}>
         <Table
-          rowSelection={this.rowSelection}
+          rowSelection={rowSelection}
           columns={columns}
-          dataSource={data.list}
+          dataSource={this.props.model.bindSelectData.list}
           bordered
-          title={() => '测试区域'}
+          title={() => <div className={styles.globalSearchWrapper} style={{ width: 300 }}><AutoComplete
+            className={styles.globalSearch} size="large" style={{ width: '100%' }} dataSource={this.props.model.bindSelectData.list.map(this.renderOption)}
+            onSelect={this.inputSelectConsole}
+            onSearch={this.inputSelectConsole}
+            placeholder="请输入要查询的用户"
+            optionLabelProp="text"
+          >
+
+            <Input
+              className={styles.globalInput}
+              suffix={(<Button className="search-btn" size="large" type="primary">
+                <Icon type="search" />
+              </Button>)}
+            />
+          </AutoComplete></div>}
         />
         <Modal
           title={this.props.model.userTitle}

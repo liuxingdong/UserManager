@@ -5,3 +5,41 @@ td.column-money {
 .userShowSwitch  {
   display: none;
 }
+.globalSearchItemCount {
+  position: absolute;
+  right: 16px;
+}
+.globalSearchWrapper {
+  padding-right: 50px;
+  right: 0px;
+}
+.globalSearch {
+  width: 100%;
+  ：global {
+    .ant-select-auto-complete {
+        .ant-select-selection-single {
+          margin-right: -46px;
+        }
+        .ant-input-affix-wrapper {
+            .ant-input:not(:last-child) {
+              padding-right: 62px;
+            }
+            .ant-input-suffix {
+              right: 0px;
+              button {
+                border-top-left-radius: 0;
+                border-bottom-left-radius: 0;
+              }
+            }
+        }
+    }
+  }
+}
+.globalInput {
+  :global {
+    .ant-input-suffix {
+      right: 0px !important;
+    }
+  }
+}
+
