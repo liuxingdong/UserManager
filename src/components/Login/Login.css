@@ -33,7 +33,9 @@
 }
 .antInput {
   height: 44px;
-  border-radius: 0;
+  /*border-radius: 0;*/
+  border-top-right-radius: 2px;
+  width: 100%;
 }
 .antBtn {
   height: 44px;

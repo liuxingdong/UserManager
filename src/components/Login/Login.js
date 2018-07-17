@@ -1,6 +1,6 @@
 import React from 'react';
 import style from './Login.css';
-import { Form, Spin, Checkbox, Icon, Input, Select, Tabs, Button } from 'antd';
+import { Form, Spin, Checkbox, Col, Icon, Input, Select, Tabs, Button } from 'antd';
 import DocumentTitle from 'react-document-title';
 import PropTypes from 'prop-types';
 import logoImg from '../../assets/yay.jpg';
@@ -51,7 +51,7 @@ class Login extends React.Component {
           <Spin spinning={this.state.loading} size="large">
             <Form className={style.loginForm} onKeyPress={this.onKeyPressLogin}>
               <Tabs defaultActiveKey="2">
-                <TabPane tab={<span><Icon type="apple" />账号密码登录</span>} key="1">
+                <TabPane tab={<span>账号密码登录</span>} key="1">
                   <FormItem>
                     {getFieldDecorator('username', {
                       rules: [
@@ -81,14 +81,14 @@ class Login extends React.Component {
                       valuePropName: 'checked',
                       initialValue: false,
                     })(
-                      <Checkbox>Remember me</Checkbox>,
+                      <Checkbox>记住我</Checkbox>,
                     )}
-                    <a className="login-form-forgot" onClick={this.props.updatePasswordViewShow}>Forgot password</a>
+                    <a className="login-form-forgot" onClick={this.props.updatePasswordViewShow}>忘记密码</a>
                     <Button type="primary" className={style.antBtn} onClick={this.handleSubmit}>登录</Button>
-                    Or <a onClick={this.props.registerViewShow}>register now!</a>
+                    Or <a onClick={this.props.registerViewShow}>立即注册!</a>
                   </FormItem>
                 </TabPane>
-                <TabPane tab={<span><Icon type="android" />手机号码登录</span>} key="2">
+                <TabPane tab={<span>手机号码登录</span>} key="2">
 
 
                   <FormItem>
@@ -100,11 +100,7 @@ class Login extends React.Component {
                         },
                       ],
                     })(
-                      <InputGroup compact>
-
-                        <Input placeholder="手机号" addonBefore={selectBefore} prefix={<Icon type="mobile" style={{ color: 'rgba(0,0,0,.25)' }} />} className={style.antInput} />
-                        <Button type="primary" className={style.antBtn} onClick={this.handleSubmit}>获取验证码</Button>
-                      </InputGroup>
+                      <Input placeholder="手机号" addonBefore={selectBefore} prefix={<Icon type="mobile" style={{ color: 'rgba(0,0,0,.25)' }} />} className={style.antInput} />
                       ,
                     )}
                   </FormItem>
@@ -117,7 +113,14 @@ class Login extends React.Component {
                         },
                       ],
                     })(
-                      <Input autoComplete="off" prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} className={style.antInput} type="password" placeholder="密码" />,
+                      <InputGroup size="large">
+                        <Col span={12} style={{ height: '100%' }}>
+                          <Input placeholder="验证码" className={style.antInput} prefix={<Icon type="question" style={{ color: 'rgba(0,0,0,.25)' }} />} />
+                        </Col>
+                        <Col span={11} style={{ float: 'right' }}>
+                          <Button type="primary" size="small" style={{ float: 'right' }} className={style.antBtn} onClick={this.handleSubmit}>获取验证码</Button>
+                        </Col>
+                      </InputGroup>,
                     )}
                   </FormItem>
                   <FormItem>
@@ -125,11 +128,11 @@ class Login extends React.Component {
                       valuePropName: 'checked',
                       initialValue: false,
                     })(
-                      <Checkbox>Remember me</Checkbox>,
+                      <Checkbox>记住我</Checkbox>,
                     )}
-                    <a className="login-form-forgot" onClick={this.props.updatePasswordViewShow}>Forgot password</a>
+                    <a className="login-form-forgot" onClick={this.props.updatePasswordViewShow}>忘记密码</a>
                     <Button type="primary" className={style.antBtn} onClick={this.handleSubmit}>登录</Button>
-                    Or <a onClick={this.props.registerViewShow}>register now!</a>
+                    Or <a onClick={this.props.registerViewShow}>立即注册!</a>
                   </FormItem>
                 </TabPane>
               </Tabs>

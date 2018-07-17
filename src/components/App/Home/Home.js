@@ -1,10 +1,8 @@
 import React from 'react';
 import styles from './Home.less';
-import * as d3 from 'd3';
 import { Card, notification, List, Avatar, Icon } from 'antd';
 import echarts from 'echarts';
 import Mock from 'mockjs';
-// import "~antd/dist/antd.less";
 
 class Home extends React.Component {
   constructor(props) {

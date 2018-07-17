@@ -1,10 +1,9 @@
 /* eslint-disable react/jsx-space-before-closing */
 import React from 'react';
 import styles from './MainLayout.less';
-import { Layout, Menu, Icon, Avatar , Breadcrumb  } from 'antd';
+import { Layout, Menu, Icon, Avatar, Breadcrumb } from 'antd';
 import Logo from '../Logo/Logo';
 import Menus from '../Menu/Menu';
-import PropTypes from 'prop-types';
 
 const { Sider, Header, Content, Footer } = Layout;
 const { SubMenu } = Menu;
@@ -66,9 +65,9 @@ class MainLayout extends React.Component {
                     float: 'right',
                   }}
                   title={<span>
-                    {/*<Icon type="user" />*/}
+                    {/* <Icon type="user" />*/}
                     <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
-                     {/* 你好，测试的!*/}
+                    {/* 你好，测试的!*/}
                   </span>}
                 >
                   <Menu.Item key="logout">
@@ -79,7 +78,7 @@ class MainLayout extends React.Component {
             </div>
           </Header>
           <Content style={{ margin: '24px 16px', padding: 24, background: '#fff' }}>
-            <Breadcrumb style={{ height: '30px'}}>
+            <Breadcrumb style={{ height: '30px' }}>
               <Breadcrumb.Item href="#">
                 <Icon type="home" />
                 <span>首页</span>
