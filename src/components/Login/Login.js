@@ -118,7 +118,7 @@ class Login extends React.Component {
                           <Input placeholder="验证码" className={style.antInput} prefix={<Icon type="question" style={{ color: 'rgba(0,0,0,.25)' }} />} />
                         </Col>
                         <Col span={11} style={{ float: 'right' }}>
-                          <Button type="primary" size="small" style={{ float: 'right' }} className={style.antBtn} onClick={this.handleSubmit}>获取验证码</Button>
+                          <Button type="primary" size="small" style={{ float: 'right' }} className={style.antBtn} >获取验证码</Button>
                         </Col>
                       </InputGroup>,
                     )}
