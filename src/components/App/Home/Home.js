@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './Home.less';
 import { Card, notification, List, Avatar, Icon } from 'antd';
 import echarts from 'echarts';
+import * as d3 from 'd3';
 import Mock from 'mockjs';
 
 class Home extends React.Component {
@@ -57,13 +58,22 @@ class Home extends React.Component {
       description: '当前的功能并未开通，请等待更新!',
     });
   };
-
+  /**
+   *
+   * 点赞累加函数
+   * */
+  giveTheThumbsUp = () => {
+    const tts = d3.select(this).append('h1');
+    tts.text('================================================');
+    console.log(tts);
+    console.log(this);
+  };
 
   render() {
     // const Step = Steps.Step;
 
-    const IconText = ({ type, text }) => (
-      <span>
+    const IconText = ({ type, text, onClick }) => (
+      <span onClick={onClick}>
         <Icon type={type} style={{ marginRight: 8 }} />
         {text}
       </span>
@@ -102,7 +112,7 @@ class Home extends React.Component {
             renderItem={item => (
               <List.Item
                 key={item.title}
-                actions={[<IconText type="star-o" text="45" />, <IconText type="like-o" text="156" />, <IconText type="message" text="2" />]}
+                actions={[<IconText type="star-o" text="0" onClick={() => this.giveTheThumbsUp} />, <IconText type="like-o" text="156" />, <IconText type="message" text="2" />]}
                 extra={<img className="headPortrait" width={100} alt="logo" src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
                 className={styles.listItem}
               >

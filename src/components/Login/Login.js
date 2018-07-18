@@ -4,6 +4,18 @@ import { Form, Spin, Checkbox, Col, Icon, Input, Select, Tabs, Button } from 'an
 import DocumentTitle from 'react-document-title';
 import PropTypes from 'prop-types';
 import logoImg from '../../assets/yay.jpg';
+import * as THREE from '../../assets/js/three.min';
+import * as d3 from 'd3';
+import '../../assets/js/Detector';
+import '../../assets/js/stats.min';
+import '../../assets/js/dat.gui.min';
+import '../../assets/js/GPUComputationRenderer';
+
+const FormItem = Form.Item;
+const TabPane = Tabs.TabPane;
+const InputGroup = Input.Group;
+const Option = Select.Option;
+
 
 class Login extends React.Component {
   constructor(props) {
@@ -11,37 +23,39 @@ class Login extends React.Component {
     this.state = {
       loading: false,
     };
-    this.showErrorTip = this.showErrorTip.bind(this);
-    this.onKeyPressLogin = this.onKeyPressLogin.bind(this);
+    // this.showErrorTip = this.showErrorTip.bind(this);
+    // this.onKeyPressLogin = this.onKeyPressLogin.bind(this);
   }
-  handleSubmit = (e) => {
+  componentDidMount() {
+    // this.init();
+    // this.animate();
+  }
+
+  submitLogin = (e) => {
+    e.preventDefault();
     this.props.form.validateFields((err, values) => {
       this.props.handleLogin(err, values);
     });
-  }
+  };
   onKeyPressLogin(event) {
     /**
      *  If you click the keyboard return key,
      *  execute the landing
      */
     if (event.which === 13) {
-      this.handleSubmit();
+      // this.handleSubmit();
     }
   }
   showErrorTip = () => {
-    message.error(this.props.errorTip);
+
+
   };
+
   render() {
-    const FormItem = Form.Item;
-    const TabPane = Tabs.TabPane;
-    const InputGroup = Input.Group;
-    const Option = Select.Option;
-
     const { getFieldDecorator } = this.props.form;
-
     const selectBefore = (<Select defaultValue="86">
-      <Option value="81">+86</Option>
-      <Option value="Option2">+81</Option>
+      <Option value="86">+86</Option>
+      <Option value="81">+81</Option>
     </Select>);
     return (
       <div className={style.loginPage}>
@@ -49,7 +63,7 @@ class Login extends React.Component {
         <div className={style.loginBox}>
           <img src={logoImg} alt="logo" className={style.logo} />
           <Spin spinning={this.state.loading} size="large">
-            <Form className={style.loginForm} onKeyPress={this.onKeyPressLogin}>
+            <Form className={style.loginForm} onSubmit={this.submitLogin}>
               <Tabs defaultActiveKey="2">
                 <TabPane tab={<span>账号密码登录</span>} key="1">
                   <FormItem>
@@ -77,22 +91,20 @@ class Login extends React.Component {
                     )}
                   </FormItem>
                   <FormItem>
-                    {getFieldDecorator('remember', {
+                    {getFieldDecorator('remember1', {
                       valuePropName: 'checked',
                       initialValue: false,
                     })(
                       <Checkbox>记住我</Checkbox>,
                     )}
                     <a className="login-form-forgot" onClick={this.props.updatePasswordViewShow}>忘记密码</a>
-                    <Button type="primary" className={style.antBtn} onClick={this.handleSubmit}>登录</Button>
+                    <Button type="primary" htmlType="submit" className={style.antBtn}>登录</Button>
                     Or <a onClick={this.props.registerViewShow}>立即注册!</a>
                   </FormItem>
                 </TabPane>
                 <TabPane tab={<span>手机号码登录</span>} key="2">
-
-
                   <FormItem>
-                    {getFieldDecorator('username', {
+                    {getFieldDecorator('mobile', {
                       rules: [
                         {
                           required: true,
@@ -105,38 +117,40 @@ class Login extends React.Component {
                     )}
                   </FormItem>
                   <FormItem>
-                    {getFieldDecorator('password', {
-                      rules: [
-                        {
-                          required: true,
-                          message: '请输入密码',
-                        },
-                      ],
-                    })(
-                      <InputGroup size="large">
+                    <InputGroup size="small">
+                      {getFieldDecorator('verificationCode', {
+                        rules: [
+                          {
+                            required: true,
+                            message: '请输入验证码',
+                          },
+                        ],
+                      })(
                         <Col span={12} style={{ height: '100%' }}>
-                          <Input placeholder="验证码" className={style.antInput} prefix={<Icon type="question" style={{ color: 'rgba(0,0,0,.25)' }} />} />
-                        </Col>
-                        <Col span={11} style={{ float: 'right' }}>
-                          <Button type="primary" size="small" style={{ float: 'right' }} className={style.antBtn} >获取验证码</Button>
-                        </Col>
-                      </InputGroup>,
-                    )}
+                          <Input
+                            placeholder="验证码" className={style.antInput}
+                            prefix={<Icon type="question" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                          />
+                        </Col>,
+                      )}
+                      <Col span={11} style={{ float: 'right' }}>
+                        <Button type="primary" size="small" style={{ float: 'right' }} className={style.antBtn} >获取验证码</Button>
+                      </Col>
+                    </InputGroup>,
                   </FormItem>
                   <FormItem>
-                    {getFieldDecorator('remember', {
+                    {getFieldDecorator('remember2', {
                       valuePropName: 'checked',
                       initialValue: false,
                     })(
                       <Checkbox>记住我</Checkbox>,
                     )}
                     <a className="login-form-forgot" onClick={this.props.updatePasswordViewShow}>忘记密码</a>
-                    <Button type="primary" className={style.antBtn} onClick={this.handleSubmit}>登录</Button>
+                    <Button type="primary" htmlType="submit" className={style.antBtn}>登录</Button>
                     Or <a onClick={this.props.registerViewShow}>立即注册!</a>
                   </FormItem>
                 </TabPane>
               </Tabs>
-
             </Form>
           </Spin>
         </div>
@@ -152,7 +166,7 @@ Login.propTypes = {
   handleLogin: PropTypes.func,
   updatePasswordViewShow: PropTypes.func,
   registerViewShow: PropTypes.func,
-  errorTip: PropTypes.func,
+  // errorTip: PropTypes.func,
 };
 
 // export default Login;

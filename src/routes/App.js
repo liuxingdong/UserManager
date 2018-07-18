@@ -62,7 +62,6 @@ function App({ app, loading, dispatch, login }) {
     }
   }
 
-  console.log(app);
   return (
     <div className={app.loginState ? styles.normalDisplay : styles.normal}>
       <Login {...loginProps} />
