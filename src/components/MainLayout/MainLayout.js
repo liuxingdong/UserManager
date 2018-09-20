@@ -3,7 +3,7 @@ import React from 'react';
 import styles from './MainLayout.less';
 import { Layout, Menu, Icon, Avatar, Breadcrumb } from 'antd';
 import Logo from '../Logo/Logo';
-import Menus from '../Menu/Menu';
+import Menus from '../Menus/Menus';
 
 const { Sider, Header, Content, Footer } = Layout;
 const { SubMenu } = Menu;
