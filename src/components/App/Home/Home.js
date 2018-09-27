@@ -1,19 +1,17 @@
 import React from 'react';
 import styles from './Home.less';
-import { Card, notification, List, Avatar, Icon } from 'antd';
-import echarts from 'echarts';
-import * as d3 from 'd3';
-import Mock from 'mockjs';
+import { Card, notification, List, Avatar, Icon } from './antd';
+import echarts from './echarts';
+import * as d3 from './d3';
+import Mock from './mockjs';
 
 class Home extends React.Component {
-  constructor(props) {
-    super(props);
-
-    // this.showChart();
+  componentDidMount() {
+    Home.showChart();
   }
-
-  showChart() {
+  showChart = () => {
     //  实例化图表容器
+    /* eslint-disable-next-line */
     const Necharts = echarts.init(document.getElementById('userActive'));
     // 生成随机数据
     const data = Mock.mock({
@@ -47,9 +45,6 @@ class Home extends React.Component {
       }*/
 
     });
-  }
-  componentDidMount() {
-    this.showChart();
   }
 
   tabMessageShow = () => {

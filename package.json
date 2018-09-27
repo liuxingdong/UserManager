@@ -1,19 +1,18 @@
 {
   "private": true,
   "scripts": {
-    "start": "set PORT=8011 && roadhog server",
+   "start": "set port=8010 && roadhog server",
     "build": "roadhog build",
     "lint": "eslint --ext .js src test",
     "precommit": "npm run lint"
   },
   "engines": {
-    "install-node": "6.11.1"
+    "install-node": "11.0.0-pre"
   },
   "theme": {
     "primary-color": "#1DA57A"
   },
   "dependencies": {
-    "animate.css": "^3.5.1",
     "antd": "^3.5.0",
     "babel-loader": "^7.1.2",
     "babel-plugin-import": "^1.4.0",
@@ -34,15 +33,13 @@
     "babel-eslint": "^7.1.1",
     "babel-plugin-dva-hmr": "^0.3.2",
     "babel-plugin-transform-runtime": "^6.9.0",
-    "babel-plugin-transform-unicode-property-regex": "^2.0.5",
-    "babel-preset-env": "^7.0.0-beta.3",
     "eslint": "^3.12.2",
     "eslint-config-airbnb": "^13.0.0",
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^2.2.3",
     "eslint-plugin-react": "^6.8.0",
     "expect": "^1.20.2",
-    "husky": "^0.12.0",
+    "husky": "^0.14.3",
     "redbox-react": "^1.4.3",
     "roadhog": "^1.2.1"
   }

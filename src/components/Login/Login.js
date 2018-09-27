@@ -4,12 +4,7 @@ import { Form, Spin, Checkbox, Col, Icon, Input, Select, Tabs, Button } from 'an
 import DocumentTitle from 'react-document-title';
 import PropTypes from 'prop-types';
 import logoImg from '../../assets/yay.jpg';
-import * as THREE from '../../assets/js/three.min';
 import * as d3 from 'd3';
-import '../../assets/js/Detector';
-import '../../assets/js/stats.min';
-import '../../assets/js/dat.gui.min';
-import '../../assets/js/GPUComputationRenderer';
 
 const FormItem = Form.Item;
 const TabPane = Tabs.TabPane;
@@ -44,6 +39,7 @@ class Login extends React.Component {
      */
     if (event.which === 13) {
       // this.handleSubmit();
+      d3.select('#tts').attr('tt', 'rr');
     }
   }
   showErrorTip = () => {
