@@ -1,5 +1,6 @@
 import React from 'react';
 import { Menu, Icon } from 'antd';
+import MenuList from "../../cofnig/MenuConfig";
 
 class Menus extends React.Component {
   doMenuShow = (item) => {
