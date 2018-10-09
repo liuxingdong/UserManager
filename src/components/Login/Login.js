@@ -77,9 +77,7 @@ class Login extends React.Component {
                           message: '请输入账户名',
                         },
                       ],
-                    })(
-                      <Input placeholder="账户" prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} className={style.antInput} />,
-                    )}
+                    })(<Input placeholder="账户" prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} className={style.antInput} />)}
                   </FormItem>
                   <FormItem>
                     {getFieldDecorator('password', {
@@ -89,17 +87,13 @@ class Login extends React.Component {
                           message: '请输入密码',
                         },
                       ],
-                    })(
-                      <Input autoComplete="off" prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} className={style.antInput} type="password" placeholder="密码" />,
-                    )}
+                    })(<Input autoComplete="off" prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} className={style.antInput} type="password" placeholder="密码" />)}
                   </FormItem>
                   <FormItem>
                     {getFieldDecorator('remember1', {
                       valuePropName: 'checked',
                       initialValue: false,
-                    })(
-                      <Checkbox>记住我</Checkbox>,
-                    )}
+                    })(<Checkbox>记住我</Checkbox>)}
                     <a className="login-form-forgot" onClick={this.props.updatePasswordViewShow}>忘记密码</a>
                     <Button type="primary" htmlType="submit" className={style.antBtn}>登录</Button>
                     Or
@@ -116,10 +110,7 @@ class Login extends React.Component {
                           message: '请输入手机号',
                         },
                       ],
-                    })(
-                      <Input placeholder="手机号" addonBefore={selectBefore} prefix={<Icon type="mobile" style={{ color: 'rgba(0,0,0,.25)' }} />} className={style.antInput} />
-                      ,
-                    )}
+                    })(<Input placeholder="手机号" addonBefore={selectBefore} prefix={<Icon type="mobile" style={{ color: 'rgba(0,0,0,.25)' }} />} className={style.antInput} />)}
                   </FormItem>
                   <FormItem>
                     <InputGroup size="small">
@@ -130,15 +121,13 @@ class Login extends React.Component {
                             message: '请输入验证码',
                           },
                         ],
-                      })(
-                        <Col span={12} style={{ height: '100%' }}>
-                          <Input
-                            placeholder="验证码"
-                            className={style.antInput}
-                            prefix={<Icon type="question" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                          />
-                        </Col>,
-                      )}
+                      })(<Col span={12} style={{ height: '100%' }}>
+                        <Input
+                          placeholder="验证码"
+                          className={style.antInput}
+                          prefix={<Icon type="question" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                        />
+                      </Col>)}
                       <Col span={11} style={{ float: 'right' }}>
                         <Button type="primary" size="small" style={{ float: 'right' }} className={style.antBtn}>获取验证码</Button>
                       </Col>
@@ -149,9 +138,7 @@ class Login extends React.Component {
                     {getFieldDecorator('remember2', {
                       valuePropName: 'checked',
                       initialValue: false,
-                    })(
-                      <Checkbox>记住我</Checkbox>,
-                    )}
+                    })(<Checkbox>记住我</Checkbox>)}
                     <a className="login-form-forgot" onClick={this.props.updatePasswordViewShow}>忘记密码</a>
                     <Button type="primary" htmlType="submit" className={style.antBtn}>登录</Button>
                     Or

@@ -4,14 +4,14 @@ import {
 } from 'antd';
 
 class AddEditUser extends React.Component {
-  handleAddEditUserSubmit = (e) => {
+  handleAddEditUserSubmit(e) {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
         console.log('Received values of form: ', values);
       }
     });
-  };
+  }
 
   render() {
     const FormItem = Form.Item;
@@ -31,18 +31,17 @@ class AddEditUser extends React.Component {
 
     const prefixSelector = getFieldDecorator('prefix', {
       initialValue: '86',
-    })(
-      <Select style={{ width: 70 }}>
-        <Option value="86">+86</Option>
-        <Option value="87">+87</Option>
-      </Select>,
-    );
+    })(/* eslint-disable */<Select style={{ width: 70 }}>
+      <Option value="86">+86</Option>
+      <Option value="87">+87</Option>
+       </Select>);
+    /* eslint-enable */
     const config = {
       rules: [{ type: 'object', required: true, message: '请选择时间!' }],
     };
 
     return (
-      <Form onSubmit={this.handleAddEditUserSubmit}>
+      <Form onSubmit={() => this.handleAddEditUserSubmit}>
         <FormItem
           {...formItemLayout}
           label="邮箱地址"
@@ -53,9 +52,7 @@ class AddEditUser extends React.Component {
             }, {
               required: true, message: '请输入邮件地址!',
             }],
-          })(
-            <Input />,
-          )}
+          })(<Input />)}
         </FormItem>
         {/* 昵称 */}
         <FormItem
@@ -71,9 +68,7 @@ class AddEditUser extends React.Component {
         >
           {getFieldDecorator('nickname', {
             rules: [{ required: true, message: '请输入您的昵称!', whitespace: true }],
-          })(
-            <Input />,
-          )}
+          })(<Input />)}
         </FormItem>
         <FormItem
           {...formItemLayout}
@@ -81,17 +76,13 @@ class AddEditUser extends React.Component {
         >
           {getFieldDecorator('phone', {
             rules: [{ required: true, message: 'Please input your phone number!' }],
-          })(
-            <Input addonBefore={prefixSelector} style={{ width: '100%' }} />,
-          )}
+          })(<Input addonBefore={prefixSelector} style={{ width: '100%' }} />)}
         </FormItem>
         <FormItem
           {...formItemLayout}
           label="创建时间"
         >
-          {getFieldDecorator('date-time-picker', config)(
-            <DatePicker showTime format="YYYY-MM-DD HH:mm:ss" />,
-          )}
+          {getFieldDecorator('date-time-picker', config)(<DatePicker showTime format="YYYY-MM-DD HH:mm:ss" />)}
         </FormItem>
       </Form>
     );

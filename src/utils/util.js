@@ -1,5 +1,6 @@
 // @flow
 import * as Coordinate from './coordinate.js';
+
 const UnitBezier = require('@mapbox/unitbezier');
 const Point = require('point-geometry');
 

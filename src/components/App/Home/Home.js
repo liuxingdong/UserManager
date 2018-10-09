@@ -11,9 +11,24 @@ class Home extends React.Component {
   constructor(props) {
     super(props);
     this.showChart = this.showChart.bind(this);
+    this.tabMessageShow = this.tabMessageShow.bind(this);
   }
+
   componentDidMount() {
     this.showChart();
+  }
+
+  /**
+   *
+   * 点赞累加函数
+   * */
+  giveTheThumbsUp() {
+    const tts = d3.select(this).append('h1');
+    tts.text('================================================');
+    /* eslint-disable no-console */
+    console.log(tts);
+    console.log(this);
+    /* eslint-enable no-console */
   }
 
   showChart() {
@@ -54,25 +69,12 @@ class Home extends React.Component {
     });
   }
 
-  tabMessageShow = () => {
+  tabMessageShow() {
     notification.warning({
       message: '当前功能未开通!',
       description: '当前的功能并未开通，请等待更新!',
     });
-  };
-
-  /**
-   *
-   * 点赞累加函数
-   * */
-  giveTheThumbsUp = () => {
-    const tts = d3.select(this).append('h1');
-    tts.text('================================================');
-    /* eslint-disable no-console */
-    console.log(tts);
-    console.log(this);
-    /* eslint-enable no-console */
-  };
+  }
 
   render() {
     // const Step = Steps.Step;
@@ -95,7 +97,7 @@ class Home extends React.Component {
     });
     return (
       <div className={this.props.globalProp.homeSwitch ? '' : styles.isShow} style={{ height: '100%', width: '100%' }}>
-        <Card title="最新消息..." extra={<a onClick={() => this.tabMessageShow()}>了解更多</a>} style={{ width: '24%', display: 'inline-block' }}>
+        <Card title="最新消息..." extra={<a href="#tts1" onClick={this.tabMessageShow}>了解更多</a>} style={{ width: '24%', display: 'inline-block' }}>
           {/*  <Steps direction="vertical" size="small" current={1}>
             <Step title="Finished" description="This is a description." />
             <Step title="In Progress" description="This is a description." />
@@ -104,7 +106,7 @@ class Home extends React.Component {
         </Card>
         <Card
           title="用户活动量"
-          extra={<a onClick={() => this.tabMessageShow()}>了解更多</a>}
+          extra={<a href="#tts1" onClick={this.tabMessageShow}>了解更多</a>}
           style={{
             width: '74%', float: 'right', display: 'inline-block', verticalAlign: 'top',
           }}
@@ -112,13 +114,15 @@ class Home extends React.Component {
           <div id="userActive" style={{ height: 400, width: 400 }} />
           <div id="locationActive" style={{ height: 400, width: 400 }} />
         </Card>
-        <Card title="实时动态消息..." extra={<a onClick={() => this.tabMessageShow()}>了解更多</a>} style={{ width: '24%', display: 'inline-block', top: 30 }}>
+        <Card title="实时动态消息..." extra={<a href="#tts1" onClick={this.tabMessageShow}>了解更多</a>} style={{ width: '24%', display: 'inline-block', top: 30 }}>
           <List
             itemLayout="vertical"
             size="small"
             pagination={{
               onChange: (page) => {
+                /* eslint-disable no-console */
                 console.log(page);
+                /* eslint-enable no-console */
               },
               pageSize: 3,
             }}

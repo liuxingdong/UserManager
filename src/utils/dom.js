@@ -1,4 +1,5 @@
 import * as window from './window';
+
 const Point = require('point-geometry');
 
 exports.create = function (tagName, className, container) {

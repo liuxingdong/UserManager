@@ -1,5 +1,6 @@
 import fetch from 'dva/fetch';
 import fetchJsonp from 'fetch-jsonp';
+
 function parseJSON(response) {
   return response.json();
 }

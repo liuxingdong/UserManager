@@ -11,6 +11,8 @@ class User extends React.Component {
     super(props);
     this.inputSelectConsole = this.inputSelectConsole.bind(this);
     this.searchResult = this.searchResult.bind(this);
+    this.renderOption = this.renderOption.bind(this);
+    this.onSelectChange = this.onSelectChange.bind(this);
   }
 
   /**
@@ -37,35 +39,12 @@ class User extends React.Component {
     });
   }
 
-  onSelectChange = (selectedRowKeys) => {
-    this.props.dispatch({
-      type: 'user/setSelectedRowKeys',
-      payload: selectedRowKeys,
-    });
-  };
+  
   /* eslint-disable */
   getRandomInt = (max, min = 0) => {
     return Math.floor(Math.random() * (max - min + 1));
   };
-
-  /* eslint-enable */
-  searchResult() {
-    // return ();
-    console.log('test');
-  }
-
-  renderOption = (item) => {
-    const Option = AutoComplete.Option;
-    return (
-      <Option key={item.key} text={item.username}>
-        {item.username}
-        <a href={item.address} target="_blank" ref=" noopener noreferrer">
-          {item.loginName}
-        </a>
-        <span className={styles.globalSearchItemCount}>约</span>
-      </Option>
-    );
-  };
+   /* eslint-enable */
 
   setUserModalVisible = (visible) => {
     this.props.dispatch({
@@ -91,12 +70,39 @@ class User extends React.Component {
   };
 
   deleteUser = () => {
+    /* eslint-disable no-alert */
     alert('成功!');
+    /* eslint-enable no-alert */
   };
 
   inputSelectConsole = (value) => {
     console.clear();
     console.log(value);
+  }
+
+  searchResult() {
+    // return ();
+    console.log('test');
+  }
+
+  renderOption(item) {
+    const Option = AutoComplete.Option;
+    return (
+      <Option key={item.key} text={item.username}>
+        {item.username}
+        <a href={item.address} target="_blank" ref=" noopener noreferrer">
+          {item.loginName}
+        </a>
+        <span className={styles.globalSearchItemCount}>约</span>
+      </Option>
+    );
+  }
+
+  onSelectChange(selectedRowKeys) {
+    this.props.dispatch({
+      type: 'user/setSelectedRowKeys',
+      payload: selectedRowKeys,
+    });
   }
 
   render() {
@@ -110,7 +116,7 @@ class User extends React.Component {
     }, {
       title: '用户名',
       dataIndex: 'username',
-      render: text => <a href="javascript:;">{text}</a>,
+      render: text => <a href="#tts">{text}</a>,
     }, {
       title: '登陆名称',
       className: 'column-money',
@@ -126,9 +132,9 @@ class User extends React.Component {
       dataIndex: 'operation',
       render: data => (
         <div style={{ textAlign: 'center' }}>
-          <a href="javascript:;" onClick={() => this.setUserModalOpen('查看用户')}><Icon type="profile" style={{ margin: '10px', fontSize: '19px' }} /></a>
-          <a href="javascript:;" onClick={() => this.setUserModalOpen('编辑用户')}><Icon type="edit" style={{ margin: '10px', fontSize: '19px' }} /></a>
-          <a href="javascript:;" onClick={() => this.isDeleteUserInfo()}><Icon type="delete" style={{ margin: '10px', fontSize: '19px' }} /></a>
+          <a href="#tts" onClick={() => this.setUserModalOpen('查看用户')}><Icon type="profile" style={{ margin: '10px', fontSize: '19px' }} /></a>
+          <a href="#tts" onClick={() => this.setUserModalOpen('编辑用户')}><Icon type="edit" style={{ margin: '10px', fontSize: '19px' }} /></a>
+          <a href="#tts" onClick={() => this.isDeleteUserInfo()}><Icon type="delete" style={{ margin: '10px', fontSize: '19px' }} /></a>
         </div>
       ),
     }];
