@@ -6,9 +6,11 @@ import Home from '../components/App/Home/Home';
 import Menu from '../components/App/Menu/Menu';
 
 
-function MainPage({ dispatch, location, mainLayout, user, home, menu }) {
+function MainPage({
+  dispatch, location, mainLayout, user, home, menu,
+}) {
   return (
-    <MainLayout dispatch={dispatch}location={location} model={mainLayout}>
+    <MainLayout dispatch={dispatch} location={location} model={mainLayout}>
       <Home globalProp={mainLayout} dispatch={dispatch} model={home} />
       <User globalProp={mainLayout} dispatch={dispatch} model={user} />
       <Menu globalProp={mainLayout} dispatch={dispatch} model={menu} />

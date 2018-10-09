@@ -5,8 +5,6 @@ import systeImage from '../../assets/yay.jpg';
 
 
 class Logo extends React.Component {
-
-
   render() {
     return (
       <div className={styles.logo}>

@@ -9,10 +9,10 @@ export default {
     collapsed: false,
     theme: 'light',
     menuShowSwitch: false,
-    userSwitch  : false,
-    menuSwitch  : false,
-    homeSwitch  : true,
-    roleSwitch  : false,
+    userSwitch: false,
+    menuSwitch: false,
+    homeSwitch: true,
+    roleSwitch: false,
 
   },
   reducers: {
@@ -28,7 +28,7 @@ export default {
       state.menuConfig = menu;
 
 
-      switch (menu){
+      switch (menu) {
         case 'user':
           state.userSwitch = true;
           state.menuSwitch = false;
@@ -59,7 +59,6 @@ export default {
           state.homeSwitch = false;
           state.roleSwitch = false;
           break;
-
       }
 
       return { ...state };

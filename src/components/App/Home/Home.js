@@ -1,15 +1,22 @@
 import React from 'react';
+import {
+  Card, notification, List, Avatar, Icon,
+} from 'antd';
+import echarts from 'echarts';
+import * as d3 from 'd3';
+import Mock from 'mockjs';
 import styles from './Home.less';
-import { Card, notification, List, Avatar, Icon } from './antd';
-import echarts from './echarts';
-import * as d3 from './d3';
-import Mock from './mockjs';
 
 class Home extends React.Component {
-  componentDidMount() {
-    Home.showChart();
+  constructor(props) {
+    super(props);
+    this.showChart = this.showChart.bind(this);
   }
-  showChart = () => {
+  componentDidMount() {
+    this.showChart();
+  }
+
+  showChart() {
     //  实例化图表容器
     /* eslint-disable-next-line */
     const Necharts = echarts.init(document.getElementById('userActive'));
@@ -38,11 +45,11 @@ class Home extends React.Component {
           color: 'rgb(255,255,255,0.3)',
         },
       },
-     /* labelLine : {
+      /* labelLine : {
         lineStyle: {
           color : "rgb(255,255,255,0.3)"
         }
-      }*/
+      } */
 
     });
   }
@@ -53,6 +60,7 @@ class Home extends React.Component {
       description: '当前的功能并未开通，请等待更新!',
     });
   };
+
   /**
    *
    * 点赞累加函数
@@ -60,8 +68,10 @@ class Home extends React.Component {
   giveTheThumbsUp = () => {
     const tts = d3.select(this).append('h1');
     tts.text('================================================');
+    /* eslint-disable no-console */
     console.log(tts);
     console.log(this);
+    /* eslint-enable no-console */
   };
 
   render() {
@@ -90,20 +100,30 @@ class Home extends React.Component {
             <Step title="Finished" description="This is a description." />
             <Step title="In Progress" description="This is a description." />
             <Step title="Waiting" description="This is a description." />
-          </Steps>*/}
+          </Steps> */}
         </Card>
-        <Card title="用户活动量" extra={<a onClick={() => this.tabMessageShow()}>了解更多</a>} style={{ width: '74%', float: 'right', display: 'inline-block', verticalAlign: 'top' }}>
+        <Card
+          title="用户活动量"
+          extra={<a onClick={() => this.tabMessageShow()}>了解更多</a>}
+          style={{
+            width: '74%', float: 'right', display: 'inline-block', verticalAlign: 'top',
+          }}
+        >
           <div id="userActive" style={{ height: 400, width: 400 }} />
           <div id="locationActive" style={{ height: 400, width: 400 }} />
         </Card>
         <Card title="实时动态消息..." extra={<a onClick={() => this.tabMessageShow()}>了解更多</a>} style={{ width: '24%', display: 'inline-block', top: 30 }}>
           <List
-            itemLayout="vertical" size="small" pagination={{
+            itemLayout="vertical"
+            size="small"
+            pagination={{
               onChange: (page) => {
                 console.log(page);
               },
               pageSize: 3,
-            }} dataSource={data.list} footer={<div>页脚</div>}
+            }}
+            dataSource={data.list}
+            footer={<div>页脚</div>}
             renderItem={item => (
               <List.Item
                 key={item.title}
@@ -118,7 +138,7 @@ class Home extends React.Component {
                 />
                 {item.content}
               </List.Item>
-                )}
+            )}
           />
         </Card>
       </div>

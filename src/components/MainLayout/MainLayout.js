@@ -1,11 +1,15 @@
 /* eslint-disable react/jsx-space-before-closing */
 import React from 'react';
+import {
+  Layout, Menu, Icon, Avatar, Breadcrumb,
+} from 'antd';
 import styles from './MainLayout.less';
-import { Layout, Menu, Icon, Avatar, Breadcrumb } from 'antd';
 import Logo from '../Logo/Logo';
 import Menus from '../Menus/Menus';
 
-const { Sider, Header, Content, Footer } = Layout;
+const {
+  Sider, Header, Content, Footer,
+} = Layout;
 const { SubMenu } = Menu;
 
 
@@ -27,6 +31,7 @@ class MainLayout extends React.Component {
       payload: !this.props.model.collapsed,
     });
   };
+
   logoutOut = () => {
     this.props.dispatch({
       type: 'app/logoutOut',
@@ -43,7 +48,7 @@ class MainLayout extends React.Component {
           style={{ background: '#fff' }}
         >
           <Logo />
-          <Menus model={this.props.model} dispatch={this.props.dispatch}/>
+          <Menus model={this.props.model} dispatch={this.props.dispatch} />
         </Sider>
         <Layout>
           <Header
@@ -64,11 +69,13 @@ class MainLayout extends React.Component {
                   style={{
                     float: 'right',
                   }}
-                  title={<span>
-                    {/* <Icon type="user" />*/}
-                    <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
-                    {/* 你好，测试的!*/}
-                  </span>}
+                  title={(
+                    <span>
+                      {/* <Icon type="user" /> */}
+                      <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
+                      {/* 你好，测试的! */}
+                    </span>
+)}
                 >
                   <Menu.Item key="logout">
                     Sign out

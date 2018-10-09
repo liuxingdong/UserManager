@@ -7,7 +7,6 @@ export default {
   },
   reducers: {
     setShowSwitch(state, { payload: showSwitch }) {
-
       state.showSwitch = showSwitch;
       return { ...state };
     },

@@ -19,8 +19,10 @@ const Point = require('point-geometry');
 exports.easeCubicInOut = function (t: number): number {
   if (t <= 0) return 0;
   if (t >= 1) return 1;
-  const t2 = t * t,
-    t3 = t2 * t;
+  const t2 = t * t;
+
+
+  const t3 = t2 * t;
   return 4 * (t < 0.5 ? t3 : 3 * (t - t2) + t3 - 0.75);
 };
 
@@ -245,7 +247,7 @@ exports.getCoordinatesCenter = function (coords: Array<Coordinate>): Coordinate 
   const dMax = Math.max(dx, dy);
   const zoom = Math.max(0, Math.floor(-Math.log(dMax) / Math.LN2));
   return new Coordinate((minX + maxX) / 2, (minY + maxY) / 2, 0)
-        .zoomTo(zoom);
+    .zoomTo(zoom);
 };
 
 /**
@@ -319,11 +321,10 @@ exports.deepEqual = function (a: ?mixed, b: ?mixed): boolean {
 exports.clone = function<T> (input: T): T {
   if (Array.isArray(input)) {
     return input.map(exports.clone);
-  } else if (typeof input === 'object' && input) {
+  } if (typeof input === 'object' && input) {
     return ((exports.mapObject(input, exports.clone): any): T);
-  } else {
-    return input;
   }
+  return input;
 };
 
 /**
@@ -347,7 +348,7 @@ exports.arraysIntersect = function<T> (a: Array<T>, b: Array<T>): boolean {
 const warnOnceHistory: {[key: string]: boolean} = {};
 exports.warnOnce = function (message: string): void {
   if (!warnOnceHistory[message]) {
-        // console isn't defined in some WebWorkers, see #2558
+    // console isn't defined in some WebWorkers, see #2558
     if (typeof console !== 'undefined') console.warn(message);
     warnOnceHistory[message] = true;
   }
@@ -387,19 +388,19 @@ exports.calculateSignedArea = function (ring: Array<Point>): number {
  * @return true if the points are a closed polygon
  */
 exports.isClosedPolygon = function (points: Array<Point>): boolean {
-    // If it is 2 points that are the same then it is a point
-    // If it is 3 points with start and end the same then it is a line
+  // If it is 2 points that are the same then it is a point
+  // If it is 3 points with start and end the same then it is a line
   if (points.length < 4) { return false; }
 
   const p1 = points[0];
   const p2 = points[points.length - 1];
 
-  if (Math.abs(p1.x - p2.x) > 0 ||
-        Math.abs(p1.y - p2.y) > 0) {
+  if (Math.abs(p1.x - p2.x) > 0
+        || Math.abs(p1.y - p2.y) > 0) {
     return false;
   }
 
-    // polygon simplification can produce polygons with zero area and more than 3 points
+  // polygon simplification can produce polygons with zero area and more than 3 points
   return (Math.abs(exports.calculateSignedArea(points)) > 0.01);
 };
 
@@ -412,17 +413,19 @@ exports.isClosedPolygon = function (points: Array<Point>): boolean {
 
 exports.sphericalToCartesian = function (spherical: Array<number>): Array<number> {
   const r = spherical[0];
-  let azimuthal = spherical[1],
-    polar = spherical[2];
-    // We abstract "north"/"up" (compass-wise) to be 0° when really this is 90° (π/2):
-    // correct for that here
+  let azimuthal = spherical[1];
+
+
+  let polar = spherical[2];
+  // We abstract "north"/"up" (compass-wise) to be 0° when really this is 90° (π/2):
+  // correct for that here
   azimuthal += 90;
 
-    // Convert azimuthal and polar angles to radians
+  // Convert azimuthal and polar angles to radians
   azimuthal *= Math.PI / 180;
   polar *= Math.PI / 180;
 
-    // spherical to cartesian (x, y, z)
+  // spherical to cartesian (x, y, z)
   return [
     r * Math.cos(azimuthal) * Math.sin(polar),
     r * Math.sin(azimuthal) * Math.sin(polar),
@@ -438,7 +441,7 @@ exports.sphericalToCartesian = function (spherical: Array<number>): Array<number
  */
 
 exports.parseCacheControl = function (cacheControl: string): Object {
-    // Taken from [Wreck](https://github.com/hapijs/wreck)
+  // Taken from [Wreck](https://github.com/hapijs/wreck)
   const re = /(?:^|(?:\s*\,\s*))([^\x00-\x20\(\)<>@\,;\:\\"\/\[\]\?\=\{\}\x7F]+)(?:\=(?:([^\x00-\x20\(\)<>@\,;\:\\"\/\[\]\?\=\{\}\x7F]+)|(?:\"((?:[^"\\]|\\.)*)\")))?/g;
 
   const header = {};

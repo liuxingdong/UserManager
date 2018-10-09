@@ -32,13 +32,13 @@ export default {
     },
     loginSuccess(state, { payload: result }) {
       state.isLogin = true;
-    /*  state.user.uid = result.user.Id;
+      /*  state.user.uid = result.user.Id;
       state.user.name = result.user.Name;
       state.user.nickname = result.user.Nickname;
       state.user.userType = result.user.UserType;
       state.user.mail = result.user.Mail;
       state.user.phone = result.user.Phone;
-      state.user.sessionid = result.session;*/
+      state.user.sessionid = result.session; */
       return { ...state };
     },
     loginFiled(state) {
@@ -70,7 +70,7 @@ export default {
         localStorage.setItem('password', payload.password);
       }
       yield put(routerRedux.push('/main'));
-     /* const ret = yield call(userService.login, { username: payload.username, passwd: payload.password });
+      /* const ret = yield call(userService.login, { username: payload.username, passwd: payload.password });
       if (ret && ret.data && ret.data.result) {
         alert(JSON.stringify(ret.data.data));
         localStorage.setItem('userId', ret.data.data.user.Id);
@@ -88,25 +88,25 @@ export default {
         yield put({
           type: 'loginFiled',
         });
-      }*/
+      } */
     },
     *loginAuth({ payload: pathname }, { call, put }) {
       // const appModel = yield select(state => state.app);
       console.log('======进入权限管理中');
       console.log(pathname);
-    // , { put, select }
+      // , { put, select }
       /* if (!appModel || !appModel.isLogin) {
         yield put((routerRedux.push('/')));
       }
       if (!state.app.isLogin) {
         yield put(routerRedux.push('/'));
-      }*/
+      } */
 
-     /* if (appModel && appModel.loginState) {
+      /* if (appModel && appModel.loginState) {
         yield put((routerRedux.push(payload)));
       }else {
 
-      }*/
+      } */
 
       console.log('================测试点3');
       console.log(pathname);
@@ -150,13 +150,13 @@ export default {
               type: 'loginAuth',
               payload: '/',
             });
-          }*/
+          } */
         }/* else if (pathname === '/main') {
           dispatch({
             type: 'loginAuth',
             payload: 'tts',
           });
-        }*/
+        } */
       });
     },
   },

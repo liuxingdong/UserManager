@@ -1,4 +1,4 @@
-import * as window from './window'
+import * as window from './window';
 const Point = require('point-geometry');
 
 exports.create = function (tagName, className, container) {
@@ -55,20 +55,22 @@ exports.mousePos = function (el, e) {
   const rect = el.getBoundingClientRect();
   e = e.touches ? e.touches[0] : e;
   return new Point(
-        e.clientX - rect.left - el.clientLeft,
-        e.clientY - rect.top - el.clientTop,
-    );
+    e.clientX - rect.left - el.clientLeft,
+    e.clientY - rect.top - el.clientTop,
+  );
 };
 
 exports.touchPos = function (el, e) {
-  const rect = el.getBoundingClientRect(),
-    points = [];
+  const rect = el.getBoundingClientRect();
+
+
+  const points = [];
   const touches = (e.type === 'touchend') ? e.changedTouches : e.touches;
   for (let i = 0; i < touches.length; i++) {
     points.push(new Point(
-            touches[i].clientX - rect.left - el.clientLeft,
-            touches[i].clientY - rect.top - el.clientTop,
-        ));
+      touches[i].clientX - rect.left - el.clientLeft,
+      touches[i].clientY - rect.top - el.clientTop,
+    ));
   }
   return points;
 };
