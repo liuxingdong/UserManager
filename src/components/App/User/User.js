@@ -13,6 +13,10 @@ class User extends React.Component {
     this.searchResult = this.searchResult.bind(this);
     this.renderOption = this.renderOption.bind(this);
     this.onSelectChange = this.onSelectChange.bind(this);
+    this.setUserModalVisible = this.setUserModalVisible.bind(this);
+    this.setUserModalOpen = this.setUserModalOpen.bind(this);
+    this.isDeleteUserInfo = this.isDeleteUserInfo.bind(this);
+    this.deleteUser = this.deleteUser.bind(this);
   }
 
   /**
@@ -39,43 +43,43 @@ class User extends React.Component {
     });
   }
 
-  
+
   /* eslint-disable */
   getRandomInt = (max, min = 0) => {
     return Math.floor(Math.random() * (max - min + 1));
   };
    /* eslint-enable */
 
-  setUserModalVisible = (visible) => {
+  onSelectChange(selectedRowKeys) {
+    this.props.dispatch({
+      type: 'user/setSelectedRowKeys',
+      payload: selectedRowKeys,
+    });
+  }
+
+  setUserModalVisible(visible) {
     this.props.dispatch({
       type: 'user/setUserModalVisible',
       payload: visible,
     });
-  };
+  }
 
-  setUserModalOpen = (title) => {
+
+  setUserModalOpen(title) {
     this.setUserModalVisible(true);
     this.props.dispatch({
       type: 'user/setUserTitle',
       payload: title,
     });
-  };
+  }
 
-  isDeleteUserInfo = () => {
-    Modal.warning({
-      title: '删除当前用户',
-      content: '您确定要删除当前用户吗?.',
-      onOk: this.deleteUser,
-    });
-  };
-
-  deleteUser = () => {
+  deleteUser() {
     /* eslint-disable no-alert */
     alert('成功!');
     /* eslint-enable no-alert */
-  };
+  }
 
-  inputSelectConsole = (value) => {
+  inputSelectConsole(value) {
     console.clear();
     console.log(value);
   }
@@ -85,24 +89,26 @@ class User extends React.Component {
     console.log('test');
   }
 
+
+  isDeleteUserInfo() {
+    Modal.warning({
+      title: '删除当前用户',
+      content: '您确定要删除当前用户吗?.',
+      onOk: this.deleteUser,
+    });
+  }
+
   renderOption(item) {
-    const Option = AutoComplete.Option;
+    const { Option } = AutoComplete;
     return (
       <Option key={item.key} text={item.username}>
         {item.username}
-        <a href={item.address} target="_blank" ref=" noopener noreferrer">
+        <a href={item.address} target="_blank" ref="noopener noreferrer">
           {item.loginName}
         </a>
         <span className={styles.globalSearchItemCount}>约</span>
       </Option>
     );
-  }
-
-  onSelectChange(selectedRowKeys) {
-    this.props.dispatch({
-      type: 'user/setSelectedRowKeys',
-      payload: selectedRowKeys,
-    });
   }
 
   render() {
@@ -134,7 +140,7 @@ class User extends React.Component {
         <div style={{ textAlign: 'center' }}>
           <a href="#tts" onClick={() => this.setUserModalOpen('查看用户')}><Icon type="profile" style={{ margin: '10px', fontSize: '19px' }} /></a>
           <a href="#tts" onClick={() => this.setUserModalOpen('编辑用户')}><Icon type="edit" style={{ margin: '10px', fontSize: '19px' }} /></a>
-          <a href="#tts" onClick={() => this.isDeleteUserInfo()}><Icon type="delete" style={{ margin: '10px', fontSize: '19px' }} /></a>
+          <a href="#tts" onClick={() => this.isDeleteUserInfo(data.title)}><Icon type="delete" style={{ margin: '10px', fontSize: '19px' }} /></a>
         </div>
       ),
     }];

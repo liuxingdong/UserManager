@@ -7,6 +7,8 @@
     "consistent-return": [0],
     "generator-star-spacing": [0],
     "global-require": [1],
+    "react/no-string-refs": [0],
+    "react/jsx-no-target-blank": [0],
     "import/extensions": [0],
     "import/no-extraneous-dependencies": [0],
     "import/no-unresolved": [0],

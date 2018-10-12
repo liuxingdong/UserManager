@@ -3,32 +3,32 @@ import { Menu, Icon } from 'antd';
 import MenuList from '../../cofnig/MenuConfig';
 
 class Menus extends React.Component {
-  doMenuShow = (item) => {
+  constructor(props) {
+    super(props);
+    this.doMenuShow = this.doMenuShow.bind(this);
+  }
+
+  doMenuShow(item) {
     this.props.dispatch({
       type: 'mainLayout/setMenuConfig',
       payload: item.key,
     });
-  };
+  }
 
   render() {
+    const mapper = (item) => {
+      return (
+        <Menu.Item key={item.menuFlag}>
+          <Icon type={item.menuIcon} />
+          <span>{item.menuName}</span>
+        </Menu.Item>);
+    };
+
     return (
       <Menu theme={this.props.model.theme} mode="inline" defaultSelectedKeys={['1']} onClick={this.doMenuShow}>
-        <Menu.Item key="home">
-          <Icon type="home" />
-          <span>首页</span>
-        </Menu.Item>
-        <Menu.Item key="user">
-          <Icon type="user" />
-          <span>用户管理</span>
-        </Menu.Item>
-        <Menu.Item key="role">
-          <Icon type="video-camera" />
-          <span>角色管理</span>
-        </Menu.Item>
-        <Menu.Item key="menu">
-          <Icon type="upload" />
-          <span>菜单管理</span>
-        </Menu.Item>
+        {
+          MenuList.map(mapper)
+        }
       </Menu>
     );
   }

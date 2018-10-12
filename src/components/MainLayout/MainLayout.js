@@ -14,29 +14,32 @@ const { SubMenu } = Menu;
 
 
 class MainLayout extends React.Component {
+
   constructor(props, location) {
     super(props);
     this.location = location;
+    this.toggle = this.toggle.bind(this);
+    this.logoutOut = this.logoutOut.bind(this);
     // this.children = children;
     console.log('|||||||||||||||||||||||||||||测试的地方||||||||||||');
     console.log(this.props);
   }
 
+  logoutOut() {
+    this.props.dispatch({
+      type: 'app/logoutOut',
+    });
+  }
+
   /**
    * Control the left bar opening and closing
    */
-  toggle = () => {
+  toggle() {
     this.props.dispatch({
       type: 'mainLayout/setCollapsed',
       payload: !this.props.model.collapsed,
     });
-  };
-
-  logoutOut = () => {
-    this.props.dispatch({
-      type: 'app/logoutOut',
-    });
-  };
+  }
 
   render() {
     return (

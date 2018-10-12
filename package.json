@@ -1,8 +1,11 @@
 {
   "private": true,
   "scripts": {
-    "start": "set port=8010 && roadhog server",
-    "build": "roadhog build"
+    "start": "roadhog server",
+    "build": "roadhog build",
+    "build:dll": "roadhog buildDll",
+    "test": "roadhog test"
+   
   },
   "engines": {
     "install-node": "8.2.1"

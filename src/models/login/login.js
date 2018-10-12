@@ -10,7 +10,6 @@ export default {
     loginSwitch: true,
     updatePasswordSwitch: false,
     registerSwitch: false,
-
   },
   reducers: {
     setLoginSwtch(state, { payload: loginSwitch }) {

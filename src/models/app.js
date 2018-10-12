@@ -1,5 +1,5 @@
 import { routerRedux } from 'dva/router';
-import * as userService from '../services/user.js';
+// import * as userService from '../services/user.js';
 // import { browserHistory } from 'dva/router';
 
 export default {
@@ -32,6 +32,10 @@ export default {
     },
     loginSuccess(state, { payload: result }) {
       state.isLogin = true;
+      /**
+       * 输出
+       */
+      console.log(result);
       /*  state.user.uid = result.user.Id;
       state.user.name = result.user.Name;
       state.user.nickname = result.user.Nickname;
@@ -42,14 +46,14 @@ export default {
       return { ...state };
     },
     loginFiled(state) {
-      state.isLogin = false;
-      state.errorTip = '登陆失败,用户名或密码错误';
-      state.logining = false;
+      this.state.isLogin = false;
+      this.state.errorTip = '登陆失败,用户名或密码错误';
+      this.state.logining = false;
       return { ...state };
     },
     initRememberContent(state, { username, password }) {
-      state.username = username;
-      state.password = password;
+      this.state.username = username;
+      this.state.password = password;
       return { ...state };
     },
 
