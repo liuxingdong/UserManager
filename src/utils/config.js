@@ -1,5 +1,5 @@
 const config = {
-  baseURL: 'http://localhost', // 用户服务
+  baseURL: 'http://localhost:8080/MallUserSystem', // 用户服务
   googleVectorMap: {
     url: '',
     option: {

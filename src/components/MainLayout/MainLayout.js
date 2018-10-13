@@ -1,26 +1,23 @@
-/* eslint-disable react/jsx-space-before-closing */
 import React from 'react';
 import {
-  Layout, Menu, Icon, Avatar, Breadcrumb,
+  Layout, Menu, Icon, Avatar, Breadcrumb, BackTop,
 } from 'antd';
 import styles from './MainLayout.less';
 import Logo from '../Logo/Logo';
 import Menus from '../Menus/Menus';
+
 const {
   Sider, Header, Content, Footer,
 } = Layout;
 const { SubMenu } = Menu;
 
 class MainLayout extends React.Component {
-
   constructor(props, location) {
     super(props);
     this.location = location;
     this.toggle = this.toggle.bind(this);
     this.logoutOut = this.logoutOut.bind(this);
     // this.children = children;
-    console.log('|||||||||||||||||||||||||||||测试的地方||||||||||||');
-    console.log(this.props);
   }
 
   logoutOut() {
@@ -87,11 +84,11 @@ class MainLayout extends React.Component {
           </Header>
           <Content style={{ margin: '24px 16px', padding: 24, background: '#fff' }}>
             <Breadcrumb style={{ height: '30px' }}>
-              <Breadcrumb.Item href="#">
+              <Breadcrumb.Item href="#tts">
                 <Icon type="home" />
                 <span>首页</span>
               </Breadcrumb.Item>
-              <Breadcrumb.Item href="#">
+              <Breadcrumb.Item href="#tts">
                 <Icon type="user" />
                 <span>用户管理</span>
               </Breadcrumb.Item>

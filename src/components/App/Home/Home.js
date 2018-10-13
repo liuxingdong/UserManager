@@ -25,10 +25,6 @@ class Home extends React.Component {
   giveTheThumbsUp() {
     const tts = d3.select(this).append('h1');
     tts.text('================================================');
-    /* eslint-disable no-console */
-    console.log(tts);
-    console.log(this);
-    /* eslint-enable no-console */
   }
 
   showChart() {

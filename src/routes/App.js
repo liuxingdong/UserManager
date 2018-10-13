@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'dva';
+import { Spin, } from 'antd';
 import styles from './App.css';
 import Login from '../components/Login/Login.js';
 
@@ -22,7 +23,6 @@ function App({
   };
 
   function loginInfomationShow(loginSwitch, updatePasswordSwitch, registerSwitch) {
-    console.log(loginSwitch);
     dispatch({
       type: 'login/setLoginSwtch',
       payload: loginSwitch,
@@ -47,7 +47,6 @@ function App({
   }
 
   function handleLogin(error, loginValues) {
-    console.log(`==================>>打印输出为:${error}`, loginValues);
     /* dispatch({
       type: 'app/setLoginState',
       payload: loginState,
@@ -66,6 +65,7 @@ function App({
 
   return (
     <div className={app.loginState ? styles.normalDisplay : styles.normal}>
+      <Spin size="large" />
       <Login {...loginProps} />
     </div>
   );

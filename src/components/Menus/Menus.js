@@ -1,6 +1,6 @@
 import React from 'react';
 import { Menu, Icon } from 'antd';
-import MenuList from '../../cofnig/MenuConfig';
+import MenuList from '../../config/MenuConfig';
 
 class Menus extends React.Component {
   constructor(props) {
@@ -17,7 +17,6 @@ class Menus extends React.Component {
 
   render() {
     const mapper = (item) => {
-      console.log(item);
       return (
         <Menu.Item key={item.menuFlag}>
           <Icon type={item.menuIcon} />

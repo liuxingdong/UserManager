@@ -1,5 +1,5 @@
 import { routerRedux } from 'dva/router';
-// import * as userService from '../services/user.js';
+import * as userService from '../services/user.js';
 // import { browserHistory } from 'dva/router';
 
 export default {
@@ -74,26 +74,30 @@ export default {
         localStorage.setItem('password', payload.password);
       }
       yield put(routerRedux.push('/main'));
-      /* const ret = yield
-      call(userService.login, { username: payload.username, passwd: payload.password });
-      if (ret && ret.data && ret.data.result) {
-        alert(JSON.stringify(ret.data.data));
-        localStorage.setItem('userId', ret.data.data.user.Id);
-        yield put({
-          type: 'loginSuccess',
-          payload: ret.data.data,
-        });
-        yield put(routerRedux.push('/IndexPage'));
+      // console.log('=================显示测试=======================');
+      // yield call(userService.doLoginPage);
+      // const ret = yield call(userService.login,
+      //   { username: payload.username, password: payload.password, remember: 1 });
+      // console.log(ret);
+      // if (ret && ret.data && ret.data.result) {
+      //   // alert(JSON.stringify(ret.data.data));
+      //   // localStorage.setItem('userId', ret.data.data.user.Id);
+      //   // yield put({
+      //   //   type: 'loginSuccess',
+      //   //   payload: ret.data.data,
+      //   // });
+      //   // yield put(routerRedux.push('/IndexPage'));
 
-        if (payload.remember) {
-          localStorage.setItem('name', payload.name);
-          localStorage.setItem('passwd', payload.passwd);
-        }
-      } else {
-        yield put({
-          type: 'loginFiled',
-        });
-      } */
+      //   // if (payload.remember) {
+      //   //   localStorage.setItem('name', payload.name);
+      //   //   localStorage.setItem('passwd', payload.passwd);
+      //   // }
+      //   console.log(ret);
+      // } else {
+      //   yield put({
+      //     type: 'loginFiled',
+      //   });
+      // }
     },
     *loginAuth({ payload: pathname }, { call, put }) {
       // const appModel = yield select(state => state.app);

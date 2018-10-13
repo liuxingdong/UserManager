@@ -23,9 +23,11 @@ app.use(createLoading('loading'));
 // app.model(require('./models/example'));
 app.model(require('./models/app'));
 app.model(require('./models/MainLayout/mainLayout'));
-// app.model(require('./models/App/Home/home'));
 app.model(require('./models/App/Home/home'));
 app.model(require('./models/App/User/user'));
+app.model(require('./models/App/Orders/orders'));
+app.model(require('./models/App/Banner/banner'));
+app.model(require('./models/App/Goods/goods'));
 app.model(require('./models/login/login'));
 // 4. Router
 app.router(require('./router'));

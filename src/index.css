@@ -5,3 +5,6 @@ html, body, :global(#root) {
   padding: 0px;
   overflow:hidden;
 }
+.ant-layout{
+  height: 100%;
+}

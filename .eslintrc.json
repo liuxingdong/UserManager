@@ -4,6 +4,7 @@
   "rules": {
     "class-methods-use-this":"off",
     "arrow-body-style": [0],
+    "jsx-a11y/anchor-is-valid": [0],
     "consistent-return": [0],
     "generator-star-spacing": [0],
     "global-require": [1],

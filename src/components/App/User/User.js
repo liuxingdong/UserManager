@@ -80,13 +80,10 @@ class User extends React.Component {
   }
 
   inputSelectConsole(value) {
-    console.clear();
-    console.log(value);
   }
 
   searchResult() {
     // return ();
-    console.log('test');
   }
 
 
@@ -138,9 +135,9 @@ class User extends React.Component {
       dataIndex: 'operation',
       render: data => (
         <div style={{ textAlign: 'center' }}>
-          <a href="#tts" onClick={() => this.setUserModalOpen('查看用户')}><Icon type="profile" style={{ margin: '10px', fontSize: '19px' }} /></a>
-          <a href="#tts" onClick={() => this.setUserModalOpen('编辑用户')}><Icon type="edit" style={{ margin: '10px', fontSize: '19px' }} /></a>
-          <a href="#tts" onClick={() => this.isDeleteUserInfo(data.title)}><Icon type="delete" style={{ margin: '10px', fontSize: '19px' }} /></a>
+          <a onClick={() => this.setUserModalOpen('查看用户')}><Icon type="profile" style={{ margin: '10px', fontSize: '19px' }} /></a>
+          <a onClick={() => this.setUserModalOpen('编辑用户')}><Icon type="edit" style={{ margin: '10px', fontSize: '19px' }} /></a>
+          <a onClick={() => this.isDeleteUserInfo(data.title)}><Icon type="delete" style={{ margin: '10px', fontSize: '19px' }} /></a>
         </div>
       ),
     }];
