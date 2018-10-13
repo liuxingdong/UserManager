@@ -40,7 +40,7 @@ function App({
 
   }
   function updatePasswordViewShow() {
-    app.errorTip('================');
+    // app.errorTip('================');
   }
   function registerViewShow() {
 

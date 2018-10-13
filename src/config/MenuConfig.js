@@ -22,6 +22,24 @@ const menus = [{
   menuURL: '',
 },
 {
+  menuName: '商品管理',
+  menuFlag: 'goods',
+  menuIcon: 'video-camera',
+  menuURL: '',
+},
+{
+  menuName: '订单管理',
+  menuFlag: 'orders',
+  menuIcon: 'video-camera',
+  menuURL: '',
+},
+{
+  menuName: 'banner管理',
+  menuFlag: 'banner',
+  menuIcon: 'video-camera',
+  menuURL: '',
+},
+{
   menuName: '菜单管理',
   menuFlag: 'menu',
   menuIcon: 'upload',

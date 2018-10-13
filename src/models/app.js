@@ -74,7 +74,8 @@ export default {
         localStorage.setItem('password', payload.password);
       }
       yield put(routerRedux.push('/main'));
-      /* const ret = yield call(userService.login, { username: payload.username, passwd: payload.password });
+      /* const ret = yield
+      call(userService.login, { username: payload.username, passwd: payload.password });
       if (ret && ret.data && ret.data.result) {
         alert(JSON.stringify(ret.data.data));
         localStorage.setItem('userId', ret.data.data.user.Id);

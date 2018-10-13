@@ -6,12 +6,10 @@ import {
 import styles from './MainLayout.less';
 import Logo from '../Logo/Logo';
 import Menus from '../Menus/Menus';
-
 const {
   Sider, Header, Content, Footer,
 } = Layout;
 const { SubMenu } = Menu;
-
 
 class MainLayout extends React.Component {
 

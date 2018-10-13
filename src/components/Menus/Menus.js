@@ -17,6 +17,7 @@ class Menus extends React.Component {
 
   render() {
     const mapper = (item) => {
+      console.log(item);
       return (
         <Menu.Item key={item.menuFlag}>
           <Icon type={item.menuIcon} />
