@@ -69,7 +69,7 @@ class Login extends React.Component {
           <Spin spinning={this.state.loading} size="large">
             <Form className={style.loginForm} onSubmit={this.submitLogin}>
               <Tabs defaultActiveKey="2">
-                <TabPane tab={<span>账号密码登录</span>} key="1">
+                <TabPane tab={<span>账号密码登录</span>} key="1" forceRender={false}>
                   <FormItem>
                     {getFieldDecorator('username', {
                       rules: [

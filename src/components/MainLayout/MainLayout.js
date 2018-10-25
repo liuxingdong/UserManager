@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  Layout, Menu, Icon, Avatar, Breadcrumb, BackTop,
+  Layout, Menu, Icon, Avatar, Breadcrumb,
 } from 'antd';
 import styles from './MainLayout.less';
 import Logo from '../Logo/Logo';
@@ -76,13 +76,20 @@ class MainLayout extends React.Component {
 )}
                 >
                   <Menu.Item key="logout">
-                    Sign out
+                    退出
                   </Menu.Item>
                 </SubMenu>
               </Menu>
             </div>
           </Header>
-          <Content style={{ margin: '24px 16px', padding: 24, background: '#fff' }}>
+          <Content
+            style={
+          {
+            margin: '24px 16px',
+            padding: 24,
+            background: '#fff',
+          }}
+          >
             <Breadcrumb style={{ height: '30px' }}>
               <Breadcrumb.Item href="#tts">
                 <Icon type="home" />

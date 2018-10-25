@@ -51,9 +51,7 @@ class Orders extends React.Component {
   };
    /* eslint-enable */
 
-  searchResult() {
-    // return ();
-  }
+ 
 
 
   isDeleteUserInfo() {
@@ -147,6 +145,10 @@ class Orders extends React.Component {
     });
   }
 
+  searchResult() {
+    // return ();
+  }
+
   catOrdersInfo(title) {
     this.props.dispatch({
       type: 'orders/setOpenModel',
@@ -222,6 +224,7 @@ class Orders extends React.Component {
           visible={this.props.model.openModel}
           title={this.props.model.ordersInfoTitle}
           onOk={this.handleOk}
+          width="800px"
           onCancel={this.handleCancel}
           footer={[
             <Button key="back" onClick={this.handleCancel}>返回</Button>,

@@ -79,7 +79,7 @@ class User extends React.Component {
     /* eslint-enable no-alert */
   }
 
-  inputSelectConsole(value) {
+  inputSelectConsole() {
   }
 
   searchResult() {
