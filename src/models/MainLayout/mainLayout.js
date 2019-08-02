@@ -30,7 +30,7 @@ export default {
     setMenuConfig(state, { payload: menu }) {
       state.menuConfig = menu;
       switch (menu) {
-        case 'user':
+        case '2':
           state.userSwitch = true;
           state.menuSwitch = false;
           state.homeSwitch = false;
@@ -39,7 +39,7 @@ export default {
           state.goodsSwitch = false;
           state.bannerSwitch = false;
           break;
-        case 'menu':
+        case '7':
           state.userSwitch = false;
           state.menuSwitch = true;
           state.homeSwitch = false;
@@ -48,7 +48,7 @@ export default {
           state.goodsSwitch = false;
           state.bannerSwitch = false;
           break;
-        case 'role':
+        case '3':
           state.userSwitch = false;
           state.menuSwitch = false;
           state.homeSwitch = false;
@@ -57,7 +57,7 @@ export default {
           state.goodsSwitch = false;
           state.bannerSwitch = false;
           break;
-        case 'home':
+        case '1':
           state.userSwitch = false;
           state.menuSwitch = false;
           state.homeSwitch = true;
@@ -66,7 +66,7 @@ export default {
           state.goodsSwitch = false;
           state.bannerSwitch = false;
           break;
-        case 'goods':
+        case '4':
           state.userSwitch = false;
           state.menuSwitch = false;
           state.homeSwitch = false;
@@ -75,7 +75,7 @@ export default {
           state.goodsSwitch = true;
           state.bannerSwitch = false;
           break;
-        case 'orders':
+        case '5':
           state.userSwitch = false;
           state.menuSwitch = false;
           state.homeSwitch = false;
@@ -84,7 +84,7 @@ export default {
           state.goodsSwitch = false;
           state.bannerSwitch = false;
           break;
-        case 'banner':
+        case '6':
           state.userSwitch = false;
           state.menuSwitch = false;
           state.homeSwitch = false;
