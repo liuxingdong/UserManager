@@ -14,7 +14,7 @@ class Menus extends React.Component {
 
   /**
    * 点击菜单触发菜单跳转
-   * @param {*} item 
+   * @param {*} item
    */
   doMenuShow(item) {
     console.log(item);
