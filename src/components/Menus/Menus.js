@@ -30,11 +30,11 @@ class Menus extends React.Component {
    * @memberof Menus
    */
   renderChildMenu= (list) => {
-    return list.map((item ,index) => {
+    return list.map((item) => {
       if (item.child) {
         return (
-          <SubMenu 
-            key={item.menuId}  
+          <SubMenu
+            key={item.menuId}
             title={
               <span>
                 <Icon type={item.menuIcon} />
@@ -43,9 +43,9 @@ class Menus extends React.Component {
             }
           >
             {
-              this.renderChildMenu(item.child)  
+              this.renderChildMenu(item.child)
             }
-          </SubMenu>   
+          </SubMenu>
         );
       } else {
         return (
